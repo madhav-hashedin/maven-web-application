@@ -45,7 +45,7 @@ echo "JOB Name ${env.JOB_NAME}"
 	
 	}
 	
-	stage('DeployApplication'){
+	stage('Deploy Application into the deployment server'){
 	
 	sshagent(['sshkeyagenttomcat']) {
 	    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.234.115.195:/opt/apache-tomcat-9.0.22/webapps/maven-web-application.war"
