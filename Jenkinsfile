@@ -22,13 +22,13 @@ echo "JOB Name ${env.JOB_NAME}"
    ])
    
    
-   stage('checkout the codefrom github'){
+   stage('cloning the code from github'){
        
       git branch: 'development', credentialsId: 'e93bf3fe-9b64-42dd-b45c-2da9cafeedf1', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git' 
    } 
     
     
-    stage('Build'){
+    stage('building the package'){
         
       sh "${mvnHome}/bin/mvn clean package"
 	 
