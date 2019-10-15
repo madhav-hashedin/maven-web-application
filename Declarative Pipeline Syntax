@@ -7,15 +7,20 @@ pipeline {
  }
   stages {
     stage('clone the code') {
-      step {
+      steps {
           sh 'git clone https://github.com/madhav411/Shell-Scripts.git'
      }
   }
     stage('build the code') {
-      step {
+      steps {
           sh 'npx lerna bootstrap --scope xxxxxxxx'
           sh 'npx lerna run build --scope xxxxxxxx'
       }
+    }
+   stage('push the docker images to docker hub') {
+     steps {
+          sh 'docker push dockerhub-username/repository-name:<tag-version>'
+       }
     }
   }
 }
