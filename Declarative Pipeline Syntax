@@ -1,38 +1,21 @@
-node('master'){
- def mavenHome = tool name:'MAVEN',type:'maven'
- def mavenCmd = "${mavenHome}/bin/mvn"
- stage('git checkout'){
-   sh 'git clone https://github.com/madhav411/Shell-Scripts'
+pipeline {
+  agent {
+    docker {
+      image 'node:10.15.0-alpine'
+      args  '-p 3000:3000'
+    }
  }
-
- stage('building the package'){
-   sh "${mavenCmd} clean package"
- }
-
- stage('Generating the sonarqube report'){
-   sh "${mavenCmd} sonar:sonar"
- }
- 
- stage('Creating a Docker Image on top of Dockerfile'){
-  sh 'docker build -t madhavdocker453/maven-web-application .'
- }
-
- stage('Pushing the docker image to dockerhub'){
-  sh 'docker login -u madhavdocker453 -p xxxxxxxx'
-  sh 'docker push madhavdocker453/maven-web-application'
- }
- 
- stage('Pushing the Docker Images to Nexus Repository'){
-  sh "${mavenCmd} clean deploy"
- }
-
- stage('deploying the docker image into the Deployment Server'){
- def dockerRun = 'docker run -d -p 8090:8080 --name Container_1 madhavdocker453/maven-web-application'
- SSH_AGENT(){
- sh 'ssh -o StrictHostKeyChecking=n0 ubuntu@<ip-address> docker stop Container_1 || true'
- sh 'ssh ubuntu@<ip-address> docker rm Container_1 || true'
- sh 'ssh ubuntu@<ip-address> docker rmi $(docker images -aq) || true'
- sh "ssh ubuntu@<ip-address> ${dockerRun}"
-   }
- }
- 
+  stages {
+    stage('clone the code') {
+      step {
+          sh 'git clone https://github.com/madhav411/Shell-Scripts.git'
+     }
+  }
+    stage('build the code') {
+      step {
+          sh 'npx lerna bootstrap --scope xxxxxxxx'
+          sh 'npx lerna run build --scope xxxxxxxx'
+      }
+    }
+  }
+}
