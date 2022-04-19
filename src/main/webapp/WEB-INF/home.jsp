@@ -12,7 +12,7 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to Madhav Software Solutions Pvt Ltd.</h1>
+<h1 align="center">Welcome to Asif Software Solutions Pvt Ltd.</h1>
 <h1 align="center">Very Good Training centre for DevOps in Marathahalli and also for Job Assitance... and Job Support also...Teaching Real Time scnerios</h1>
 <hr>
 <div style="text-align: center;">
@@ -21,7 +21,7 @@
 
 	</span>
 	<span style="font-weight: bold;">
-		Madhav Software Solutions Pvt Ltd, 
+		Asif Software Solutions Pvt Ltd, 
 		SGR Dental college Road,
 		Marthahalli,Opp To Madhurai Idly House
 		Bangalore.
