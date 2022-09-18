@@ -1,0 +1,7 @@
+Dockerfile related commands:
+===========================
+docker build .
+docker build -t <image-name> .
+docker build -f <file-name> .
+docker build -f <file-name> -t <image-name> .(path of dockerfile)
+
